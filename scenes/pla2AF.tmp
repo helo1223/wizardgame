@@ -1,0 +1,159 @@
+[gd_scene load_steps=22 format=3 uid="uid://bway1p0yedlji"]
+
+[ext_resource type="Texture2D" uid="uid://urpfbg2d2t4o" path="res://assets/sprites/mage1.png" id="1_b2kkt"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_o84ry"]
+[ext_resource type="Shader" path="res://scripts/player.gdshader" id="2_bjdep"]
+[ext_resource type="PackedScene" uid="uid://bf8cge6y2rro4" path="res://scenes/staff.tscn" id="3_468a0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_50p2k"]
+resource_local_to_scene = true
+shader = ExtResource("2_bjdep")
+shader_parameter/find_color = Color(1, 1, 1, 1)
+shader_parameter/target_color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62piv"]
+atlas = ExtResource("1_b2kkt")
+region = Rect2(16, 17, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3i87"]
+atlas = ExtResource("1_b2kkt")
+region = Rect2(80, 17, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drofe"]
+atlas = ExtResource("1_b2kkt")
+region = Rect2(144, 17, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfjei"]
+atlas = ExtResource("1_b2kkt")
+region = Rect2(208, 17, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3he2r"]
+atlas = ExtResource("1_b2kkt")
+region = Rect2(272, 17, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppt7t"]
+atlas = ExtResource("1_b2kkt")
+region = Rect2(16, 209, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh323"]
+atlas = ExtResource("1_b2kkt")
+region = Rect2(80, 209, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tndr"]
+atlas = ExtResource("1_b2kkt")
+region = Rect2(144, 209, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlv4w"]
+atlas = ExtResource("1_b2kkt")
+region = Rect2(208, 209, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hlsq"]
+atlas = ExtResource("1_b2kkt")
+region = Rect2(272, 209, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4iph"]
+atlas = ExtResource("1_b2kkt")
+region = Rect2(336, 209, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onhoi"]
+atlas = ExtResource("1_b2kkt")
+region = Rect2(400, 209, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdtuu"]
+atlas = ExtResource("1_b2kkt")
+region = Rect2(464, 209, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3a1me"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62piv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3i87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drofe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfjei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3he2r")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppt7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh323")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tndr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlv4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hlsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4iph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onhoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdtuu")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kfvwf"]
+radius = 6.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ky28o"]
+resource_local_to_scene = true
+shader = ExtResource("2_bjdep")
+shader_parameter/find_color = Color(1, 1, 1, 1)
+shader_parameter/target_color = null
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_o84ry")
+
+[node name="MageSprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_50p2k")
+position = Vector2(0, -15)
+sprite_frames = SubResource("SpriteFrames_3a1me")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.051789
+
+[node name="StaffSprite" parent="MageSprite" instance=ExtResource("3_468a0")]
+use_parent_material = true
+animation = &"idle"
+frame_progress = 0.781974
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -5)
+shape = SubResource("CircleShape2D_kfvwf")
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Bar" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ky28o")
+offset_left = -9.0
+offset_top = -23.0
+offset_right = 31.0
+offset_bottom = 17.0
+scale = Vector2(0.421839, 0.0422396)
+
+[connection signal="animation_finished" from="MageSprite/StaffSprite" to="." method="_on_staff_sprite_animation_finished"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://rxp604jokwj7"]
+
+[ext_resource type="Script" path="res://scripts/enetmenu.gd" id="1_7wxnh"]
+[ext_resource type="FontFile" uid="uid://b8c73i47s1os1" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_orgvb"]
+[ext_resource type="FontFile" uid="uid://dj4ltn4hywlhs" path="res://assets/fonts/PixelOperator8.ttf" id="2_e0ebq"]
+
+[node name="MultiplayerHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1032.0
+offset_bottom = -598.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7wxnh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HostGame" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_orgvb")
+theme_override_font_sizes/font_size = 8
+text = "Host Game"
+
+[node name="JoinGame" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_e0ebq")
+theme_override_font_sizes/font_size = 8
+text = "Join Game"
+
+[node name="UseSteam" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_e0ebq")
+theme_override_font_sizes/font_size = 8
+text = "Use Steam"
+
+[connection signal="pressed" from="Panel/VBoxContainer/HostGame" to="." method="_on_host_game_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/JoinGame" to="." method="_on_join_game_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/UseSteam" to="." method="_on_use_steam_pressed"]

@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb4kcunfdnq16"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_6yehf"]
+[ext_resource type="PackedScene" uid="uid://bway1p0yedlji" path="res://scenes/player.tscn" id="1_b1p7n"]
+[ext_resource type="PackedScene" uid="uid://rxp604jokwj7" path="res://scenes/menu.tscn" id="4_kb5m6"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_umhfx"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_6yehf")
+
+[node name="Player" parent="." instance=ExtResource("1_b1p7n")]
+position = Vector2(41, 28)
+motion_mode = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(34, 57)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, 37)
+shape = SubResource("WorldBoundaryShape2D_umhfx")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(41, 13)
+zoom = Vector2(4, 4)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-66, 0)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-1, 37)
+shape = SubResource("WorldBoundaryShape2D_umhfx")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(20, -30)
+rotation = 3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-1, 37)
+shape = SubResource("WorldBoundaryShape2D_umhfx")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(150, 4)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(-1, 37)
+shape = SubResource("WorldBoundaryShape2D_umhfx")
+
+[node name="MultiplayerHUD" parent="." instance=ExtResource("4_kb5m6")]
+offset_left = -89.0
+offset_top = -54.0
+offset_right = -89.0
+offset_bottom = -54.0

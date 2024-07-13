@@ -1,0 +1,231 @@
+[gd_scene load_steps=25 format=3 uid="uid://fwqpgv6xhsen"]
+
+[ext_resource type="Script" path="res://scripts/multiplayer/multiplayer_controller.gd" id="1_0pjft"]
+[ext_resource type="Script" path="res://scripts/multiplayer/multiplayer_input.gd" id="2_cgc6x"]
+[ext_resource type="Shader" path="res://scripts/player.gdshader" id="3_m436c"]
+[ext_resource type="Texture2D" uid="uid://urpfbg2d2t4o" path="res://assets/sprites/mage1.png" id="4_1dwiv"]
+[ext_resource type="PackedScene" uid="uid://bf8cge6y2rro4" path="res://scenes/staff.tscn" id="5_le507"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_r1yru"]
+properties/0/path = NodePath(".:player_id")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:velocity")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:canAttack")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:attacking")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:position")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("MageSprite:frame")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("MageSprite/StaffSprite:frame")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("MageSprite/StaffSprite:animation")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("MageSprite:animation")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("MageSprite:speed_scale")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+properties/10/path = NodePath("MageSprite/StaffSprite:speed_scale")
+properties/10/spawn = true
+properties/10/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gh2hr"]
+properties/0/path = NodePath("InputSynchronizer:input_direction")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("MageSprite:flip_h")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("MageSprite/StaffSprite:flip_v")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("InputSynchronizer:mouse_position")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_16b58"]
+resource_local_to_scene = true
+shader = ExtResource("3_m436c")
+shader_parameter/find_color = Color(1, 1, 1, 1)
+shader_parameter/target_color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62piv"]
+atlas = ExtResource("4_1dwiv")
+region = Rect2(16, 17, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3i87"]
+atlas = ExtResource("4_1dwiv")
+region = Rect2(80, 17, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drofe"]
+atlas = ExtResource("4_1dwiv")
+region = Rect2(144, 17, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfjei"]
+atlas = ExtResource("4_1dwiv")
+region = Rect2(208, 17, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3he2r"]
+atlas = ExtResource("4_1dwiv")
+region = Rect2(272, 17, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppt7t"]
+atlas = ExtResource("4_1dwiv")
+region = Rect2(16, 209, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh323"]
+atlas = ExtResource("4_1dwiv")
+region = Rect2(80, 209, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tndr"]
+atlas = ExtResource("4_1dwiv")
+region = Rect2(144, 209, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlv4w"]
+atlas = ExtResource("4_1dwiv")
+region = Rect2(208, 209, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hlsq"]
+atlas = ExtResource("4_1dwiv")
+region = Rect2(272, 209, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4iph"]
+atlas = ExtResource("4_1dwiv")
+region = Rect2(336, 209, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onhoi"]
+atlas = ExtResource("4_1dwiv")
+region = Rect2(400, 209, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdtuu"]
+atlas = ExtResource("4_1dwiv")
+region = Rect2(464, 209, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y7at4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62piv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3i87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drofe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfjei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3he2r")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppt7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh323")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tndr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlv4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hlsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4iph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onhoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdtuu")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fh3kq"]
+radius = 6.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vortn"]
+resource_local_to_scene = true
+shader = ExtResource("3_m436c")
+shader_parameter/find_color = Color(1, 1, 1, 1)
+shader_parameter/target_color = null
+
+[node name="MultiplayerPlayer" type="CharacterBody2D"]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_0pjft")
+
+[node name="PlayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_r1yru")
+
+[node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
+unique_name_in_owner = true
+replication_config = SubResource("SceneReplicationConfig_gh2hr")
+script = ExtResource("2_cgc6x")
+
+[node name="MageSprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_16b58")
+position = Vector2(0, -15)
+sprite_frames = SubResource("SpriteFrames_y7at4")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="StaffSprite" parent="MageSprite" instance=ExtResource("5_le507")]
+unique_name_in_owner = true
+use_parent_material = true
+animation = &"walk"
+frame = 2
+frame_progress = 0.5101
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -5)
+shape = SubResource("CircleShape2D_fh3kq")
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Bar" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_vortn")
+offset_left = -9.0
+offset_top = -27.0
+offset_right = 31.0
+offset_bottom = 13.0
+scale = Vector2(0.421839, 0.0422396)
+
+[node name="PlayerName" type="Label" parent="."]
+offset_left = -7.0
+offset_top = -35.0
+offset_right = 33.0
+offset_bottom = -12.0
+scale = Vector2(0.349784, 0.224635)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -15)
+zoom = Vector2(4, 4)
+
+[connection signal="animation_finished" from="MageSprite/StaffSprite" to="." method="_on_staff_sprite_animation_finished"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
