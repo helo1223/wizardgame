@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://c25s3cm0k8b4n"]
+
+[ext_resource type="Texture2D" uid="uid://dpo4ea4h7kdep" path="res://assets/sprites/mageAttack.png" id="1_ggosi"]
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_oxs1l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58e1t"]
+atlas = ExtResource("1_ggosi")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7dkp"]
+atlas = ExtResource("1_ggosi")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32xr4"]
+atlas = ExtResource("1_ggosi")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j4b0l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58e1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7dkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32xr4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0hu1p"]
+radius = 4.0
+
+[node name="Bullet" type="CharacterBody2D"]
+motion_mode = 1
+slide_on_ceiling = false
+script = ExtResource("1_oxs1l")
+
+[node name="FadeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_j4b0l")
+frame_progress = 0.906541
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0hu1p")
+
+[connection signal="timeout" from="FadeTimer" to="." method="_on_fade_timer_timeout"]

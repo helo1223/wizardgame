@@ -22,41 +22,44 @@ properties/3/replication_mode = 1
 properties/4/path = NodePath(".:position")
 properties/4/spawn = true
 properties/4/replication_mode = 1
-properties/5/path = NodePath("MageSprite:frame")
+properties/5/path = NodePath("Mage:animation")
 properties/5/spawn = true
 properties/5/replication_mode = 1
-properties/6/path = NodePath("MageSprite/StaffSprite:frame")
+properties/6/path = NodePath("Mage:frame")
 properties/6/spawn = true
 properties/6/replication_mode = 1
-properties/7/path = NodePath("MageSprite/StaffSprite:animation")
+properties/7/path = NodePath("Mage:speed_scale")
 properties/7/spawn = true
 properties/7/replication_mode = 1
-properties/8/path = NodePath("MageSprite:animation")
+properties/8/path = NodePath("Mage:flip_h")
 properties/8/spawn = true
 properties/8/replication_mode = 1
-properties/9/path = NodePath("MageSprite:speed_scale")
+properties/9/path = NodePath("Mage/Staff:animation")
 properties/9/spawn = true
 properties/9/replication_mode = 1
-properties/10/path = NodePath("MageSprite/StaffSprite:speed_scale")
+properties/10/path = NodePath("Mage/Staff:frame")
 properties/10/spawn = true
 properties/10/replication_mode = 1
+properties/11/path = NodePath("Mage/Staff:speed_scale")
+properties/11/spawn = true
+properties/11/replication_mode = 1
+properties/12/path = NodePath("Mage/Staff:flip_v")
+properties/12/spawn = true
+properties/12/replication_mode = 1
+properties/13/path = NodePath(".:player_color")
+properties/13/spawn = true
+properties/13/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gh2hr"]
 properties/0/path = NodePath("InputSynchronizer:input_direction")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath("MageSprite:flip_h")
+properties/1/path = NodePath("InputSynchronizer:mouse_position")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("MageSprite/StaffSprite:flip_v")
+properties/2/path = NodePath("InputSynchronizer:username")
 properties/2/spawn = true
 properties/2/replication_mode = 1
-properties/3/path = NodePath("InputSynchronizer:mouse_position")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-properties/4/path = NodePath("InputSynchronizer:username")
-properties/4/spawn = true
-properties/4/replication_mode = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_16b58"]
 resource_local_to_scene = true
@@ -177,28 +180,27 @@ shader = ExtResource("3_m436c")
 shader_parameter/find_color = Color(1, 1, 1, 1)
 shader_parameter/target_color = null
 
-[node name="MultiplayerPlayer" type="CharacterBody2D"]
+[node name="MultiplayerPlayer" type="CharacterBody2D" node_paths=PackedStringArray("player_input")]
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_0pjft")
+player_input = NodePath("InputSynchronizer")
 
 [node name="PlayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_r1yru")
 
 [node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
-unique_name_in_owner = true
 replication_config = SubResource("SceneReplicationConfig_gh2hr")
 script = ExtResource("2_cgc6x")
 
-[node name="MageSprite" type="AnimatedSprite2D" parent="."]
+[node name="Mage" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_16b58")
 position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_y7at4")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="StaffSprite" parent="MageSprite" instance=ExtResource("5_le507")]
-unique_name_in_owner = true
+[node name="Staff" parent="Mage" instance=ExtResource("5_le507")]
 use_parent_material = true
 animation = &"walk"
 frame = 2
@@ -207,9 +209,6 @@ frame_progress = 0.5101
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5)
 shape = SubResource("CircleShape2D_fh3kq")
-
-[node name="AttackTimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="Bar" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_vortn")
@@ -230,5 +229,14 @@ scale = Vector2(0.349784, 0.224635)
 position = Vector2(0, -15)
 zoom = Vector2(4, 4)
 
-[connection signal="animation_finished" from="MageSprite/StaffSprite" to="." method="_on_staff_sprite_animation_finished"]
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Bullets" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -8)
+
+[connection signal="animation_finished" from="Mage/Staff" to="." method="_on_staff_sprite_animation_finished"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

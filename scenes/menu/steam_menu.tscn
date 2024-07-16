@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://65ykthy2b8ph"]
 
 [ext_resource type="FontFile" uid="uid://b8c73i47s1os1" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_d8qhy"]
-[ext_resource type="Script" path="res://scripts/steammenu.gd" id="1_n8me8"]
+[ext_resource type="Script" path="res://scripts/menu/steammenu.gd" id="1_n8me8"]
 [ext_resource type="FontFile" uid="uid://dj4ltn4hywlhs" path="res://assets/fonts/PixelOperator8.ttf" id="2_l6m4b"]
 
 [node name="SteamHUD" type="Control"]

@@ -1,0 +1,357 @@
+[gd_scene load_steps=28 format=3 uid="uid://e2jqw1myiu88"]
+
+[ext_resource type="Script" path="res://scripts/menu/main_menu.gd" id="1_fpmsj"]
+[ext_resource type="FontFile" uid="uid://b8c73i47s1os1" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_850c2"]
+[ext_resource type="FontFile" uid="uid://dj4ltn4hywlhs" path="res://assets/fonts/PixelOperator8.ttf" id="3_m7xmq"]
+[ext_resource type="Shader" path="res://scripts/player.gdshader" id="5_2fjm2"]
+[ext_resource type="Texture2D" uid="uid://ditg17qo77xeh" path="res://assets/sprites/mageselect.png" id="5_qp041"]
+
+[sub_resource type="Gradient" id="Gradient_eslr5"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yhpqa"]
+gradient = SubResource("Gradient_eslr5")
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_7o3gq"]
+offsets = PackedFloat32Array(0, 0.012987, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.368627, 0, 1, 1, 0.92549, 0.396078, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ap48"]
+gradient = SubResource("Gradient_7o3gq")
+width = 200
+height = 200
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0.137615)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8kk8h"]
+resource_local_to_scene = true
+shader = ExtResource("5_2fjm2")
+shader_parameter/find_color = Color(0.89059, 0.89059, 0.89059, 1)
+shader_parameter/target_color = Color(1, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khaj0"]
+atlas = ExtResource("5_qp041")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lkn2"]
+atlas = ExtResource("5_qp041")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwren"]
+atlas = ExtResource("5_qp041")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5wvn"]
+atlas = ExtResource("5_qp041")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0d06"]
+atlas = ExtResource("5_qp041")
+region = Rect2(0, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7stdj"]
+atlas = ExtResource("5_qp041")
+region = Rect2(64, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_terqf"]
+atlas = ExtResource("5_qp041")
+region = Rect2(128, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lb4xu"]
+atlas = ExtResource("5_qp041")
+region = Rect2(192, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl77w"]
+atlas = ExtResource("5_qp041")
+region = Rect2(256, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tn1p"]
+atlas = ExtResource("5_qp041")
+region = Rect2(320, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqceq"]
+atlas = ExtResource("5_qp041")
+region = Rect2(384, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_037ed"]
+atlas = ExtResource("5_qp041")
+region = Rect2(448, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quebw"]
+atlas = ExtResource("5_qp041")
+region = Rect2(512, 448, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v38bv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khaj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lkn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwren")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5wvn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0d06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7stdj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_terqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lb4xu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl77w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tn1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqceq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_037ed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_quebw")
+}],
+"loop": false,
+"name": &"select",
+"speed": 10.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wl6fl"]
+shader = ExtResource("5_2fjm2")
+shader_parameter/find_color = Color(0.93845, 0.93845, 0.93845, 1)
+shader_parameter/target_color = Color(0, 1, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sxn60"]
+shader = ExtResource("5_2fjm2")
+shader_parameter/find_color = Color(0.873298, 0.873298, 0.873298, 1)
+shader_parameter/target_color = Color(0, 0, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u1wa0"]
+shader = ExtResource("5_2fjm2")
+shader_parameter/find_color = Color(0.93845, 0.93845, 0.93845, 1)
+shader_parameter/target_color = Color(1, 0, 1, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fpmsj")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(18, 12)
+texture = SubResource("GradientTexture2D_yhpqa")
+centered = false
+
+[node name="Home" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -198.0
+offset_right = 288.0
+offset_bottom = -62.0
+grow_vertical = 0
+
+[node name="Singleplayer" type="Button" parent="Home"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_850c2")
+theme_override_font_sizes/font_size = 16
+text = "Singleplayer"
+
+[node name="Multiplayer" type="Button" parent="Home"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_850c2")
+theme_override_font_sizes/font_size = 16
+text = "Multiplayer"
+
+[node name="Options" type="Button" parent="Home"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_m7xmq")
+theme_override_font_sizes/font_size = 16
+text = "Options"
+
+[node name="Exit" type="Button" parent="Home"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_m7xmq")
+theme_override_font_sizes/font_size = 16
+text = "Exit"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="CharacterSelectPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+
+[node name="CharacterSelect" type="HBoxContainer" parent="CharacterSelectPanel"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = 136.0
+offset_right = 1072.0
+offset_bottom = 336.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Mage1" type="Button" parent="CharacterSelectPanel/CharacterSelect"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Selection" type="TextureRect" parent="CharacterSelectPanel/CharacterSelect/Mage1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_0ap48")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterSelectPanel/CharacterSelect/Mage1"]
+material = SubResource("ShaderMaterial_8kk8h")
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_v38bv")
+animation = &"idle"
+offset = Vector2(22, 15)
+
+[node name="Mage2" type="Button" parent="CharacterSelectPanel/CharacterSelect"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Selection" type="TextureRect" parent="CharacterSelectPanel/CharacterSelect/Mage2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_0ap48")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterSelectPanel/CharacterSelect/Mage2"]
+material = SubResource("ShaderMaterial_wl6fl")
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_v38bv")
+animation = &"idle"
+offset = Vector2(22, 15)
+
+[node name="Mage3" type="Button" parent="CharacterSelectPanel/CharacterSelect"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Selection" type="TextureRect" parent="CharacterSelectPanel/CharacterSelect/Mage3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_0ap48")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterSelectPanel/CharacterSelect/Mage3"]
+material = SubResource("ShaderMaterial_sxn60")
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_v38bv")
+animation = &"select"
+offset = Vector2(22, 15)
+
+[node name="Mage4" type="Button" parent="CharacterSelectPanel/CharacterSelect"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Selection" type="TextureRect" parent="CharacterSelectPanel/CharacterSelect/Mage4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_0ap48")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterSelectPanel/CharacterSelect/Mage4"]
+material = SubResource("ShaderMaterial_u1wa0")
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_v38bv")
+animation = &"select"
+offset = Vector2(22, 15)
+
+[node name="Back" type="Button" parent="CharacterSelectPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 582.0
+offset_right = 128.0
+offset_bottom = 613.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_m7xmq")
+theme_override_font_sizes/font_size = 16
+text = "Back"
+
+[node name="Select" type="Button" parent="CharacterSelectPanel"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 512.0
+offset_top = 430.0
+offset_right = 632.0
+offset_bottom = 461.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_850c2")
+theme_override_font_sizes/font_size = 16
+disabled = true
+text = "Select
+"
+
+[connection signal="pressed" from="Home/Singleplayer" to="." method="_on_singleplayer_pressed"]
+[connection signal="pressed" from="Home/Multiplayer" to="." method="_on_multiplayer_pressed"]
+[connection signal="pressed" from="Home/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Home/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Home/Exit" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="CharacterSelectPanel/CharacterSelect/Mage1" to="." method="_on_mage_mouse_entered" binds= [0]]
+[connection signal="mouse_exited" from="CharacterSelectPanel/CharacterSelect/Mage1" to="." method="_on_mage_mouse_exited" binds= [0]]
+[connection signal="pressed" from="CharacterSelectPanel/CharacterSelect/Mage1" to="." method="_on_mage_pressed" binds= [0]]
+[connection signal="animation_finished" from="CharacterSelectPanel/CharacterSelect/Mage1/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished" binds= [0]]
+[connection signal="mouse_entered" from="CharacterSelectPanel/CharacterSelect/Mage2" to="." method="_on_mage_mouse_entered" binds= [1]]
+[connection signal="mouse_exited" from="CharacterSelectPanel/CharacterSelect/Mage2" to="." method="_on_mage_mouse_exited" binds= [1]]
+[connection signal="pressed" from="CharacterSelectPanel/CharacterSelect/Mage2" to="." method="_on_mage_pressed" binds= [1]]
+[connection signal="animation_finished" from="CharacterSelectPanel/CharacterSelect/Mage2/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished" binds= [1]]
+[connection signal="mouse_entered" from="CharacterSelectPanel/CharacterSelect/Mage3" to="." method="_on_mage_mouse_entered" binds= [2]]
+[connection signal="mouse_exited" from="CharacterSelectPanel/CharacterSelect/Mage3" to="." method="_on_mage_mouse_exited" binds= [2]]
+[connection signal="pressed" from="CharacterSelectPanel/CharacterSelect/Mage3" to="." method="_on_mage_pressed" binds= [2]]
+[connection signal="animation_finished" from="CharacterSelectPanel/CharacterSelect/Mage3/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished" binds= [2]]
+[connection signal="mouse_entered" from="CharacterSelectPanel/CharacterSelect/Mage4" to="." method="_on_mage_mouse_entered" binds= [3]]
+[connection signal="mouse_exited" from="CharacterSelectPanel/CharacterSelect/Mage4" to="." method="_on_mage_mouse_exited" binds= [3]]
+[connection signal="pressed" from="CharacterSelectPanel/CharacterSelect/Mage4" to="." method="_on_mage_pressed" binds= [3]]
+[connection signal="animation_finished" from="CharacterSelectPanel/CharacterSelect/Mage4/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished" binds= [3]]
+[connection signal="pressed" from="CharacterSelectPanel/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CharacterSelectPanel/Select" to="." method="_on_select_pressed"]

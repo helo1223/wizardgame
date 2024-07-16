@@ -1,5 +1,8 @@
 extends Node
 
+var host_mode_enabled = false
+var multiplayer_mode_enabled = false
+
 func become_host():
     print("Host button pressed")
     _remove_single_player()
@@ -52,7 +55,7 @@ func use_enet():
     
 func use_steam():
     print("Using Steam")
-    %MultiplayerHUD.hide()
+    $MainMenu.hide()
     %SteamHUD.show()
     SteamManager.initialize_steam()
     %NetworkManager.active_network_type = %NetworkManager.MULTIPLAYER_NETWORK_TYPE.STEAM
@@ -65,4 +68,5 @@ func list_lobbies():
 func _remove_single_player():
     print("Removing single player")
     var player_to_remove = get_tree().get_current_scene().get_node("Player")
-    player_to_remove.queue_free()
+    if player_to_remove:
+        player_to_remove.queue_free()
