@@ -26,8 +26,8 @@ fill_to = Vector2(0, 0.137615)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8kk8h"]
 resource_local_to_scene = true
 shader = ExtResource("5_2fjm2")
-shader_parameter/find_color = Color(1, 1, 1, 1)
-shader_parameter/target_color = Color(0, 0, 0, 1)
+shader_parameter/find_color = Color(0.88, 0.88, 0.88, 1)
+shader_parameter/target_color = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_khaj0"]
 atlas = ExtResource("5_qp041")
@@ -135,18 +135,18 @@ animations = [{
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wl6fl"]
 shader = ExtResource("5_2fjm2")
-shader_parameter/find_color = Color(1, 1, 1, 1)
-shader_parameter/target_color = Color(0, 0, 0, 1)
+shader_parameter/find_color = Color(0.88, 0.88, 0.88, 1)
+shader_parameter/target_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sxn60"]
 shader = ExtResource("5_2fjm2")
-shader_parameter/find_color = Color(1, 1, 1, 1)
-shader_parameter/target_color = Color(0, 0, 0, 1)
+shader_parameter/find_color = Color(0.88, 0.88, 0.88, 1)
+shader_parameter/target_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u1wa0"]
 shader = ExtResource("5_2fjm2")
-shader_parameter/find_color = Color(1, 1, 1, 1)
-shader_parameter/target_color = Color(0, 0, 0, 1)
+shader_parameter/find_color = Color(0.88, 0.88, 0.88, 1)
+shader_parameter/target_color = Color(1, 1, 1, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -201,6 +201,7 @@ text = "Exit"
 anchor_mode = 0
 
 [node name="CharacterSelectPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 
 [node name="CharacterSelect" type="HBoxContainer" parent="CharacterSelectPanel"]
