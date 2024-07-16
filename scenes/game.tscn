@@ -1,10 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cb4kcunfdnq16"]
+[gd_scene load_steps=6 format=3 uid="uid://cb4kcunfdnq16"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_6yehf"]
-[ext_resource type="PackedScene" uid="uid://bway1p0yedlji" path="res://scenes/player.tscn" id="1_b1p7n"]
-[ext_resource type="Script" path="res://scripts/managers/game_manager.gd" id="2_dkafu"]
-[ext_resource type="Script" path="res://scripts/managers/network_manager.gd" id="3_1rmt2"]
-[ext_resource type="Script" path="res://scripts/managers/multiplayer_manager.gd" id="4_16drn"]
+[ext_resource type="PackedScene" uid="uid://byresh1yv4edi" path="res://scenes/item.tscn" id="4_dc11q"]
 [ext_resource type="PackedScene" uid="uid://rxp604jokwj7" path="res://scenes/menu/enet_menu.tscn" id="4_kb5m6"]
 [ext_resource type="PackedScene" uid="uid://65ykthy2b8ph" path="res://scenes/menu/steam_menu.tscn" id="4_l3qul"]
 
@@ -12,26 +9,6 @@
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_6yehf")
-
-[node name="GameManager" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2_dkafu")
-
-[node name="NetworkManager" type="Node" parent="." node_paths=PackedStringArray("_players_spawn_node")]
-unique_name_in_owner = true
-script = ExtResource("3_1rmt2")
-_players_spawn_node = NodePath("../Players")
-
-[node name="MultiplayerManager" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("4_16drn")
-
-[node name="Player" parent="." instance=ExtResource("1_b1p7n")]
-position = Vector2(41, 28)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, -15)
-zoom = Vector2(4, 4)
 
 [node name="MultiplayerHUD" parent="." instance=ExtResource("4_kb5m6")]
 unique_name_in_owner = true
@@ -88,3 +65,5 @@ rotation = -1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/StaticBody2D4"]
 position = Vector2(-1, 37)
 shape = SubResource("WorldBoundaryShape2D_umhfx")
+
+[node name="Area2D" parent="." instance=ExtResource("4_dc11q")]

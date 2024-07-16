@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl2txouh83ghk"]
+
+[ext_resource type="FontFile" uid="uid://dj4ltn4hywlhs" path="res://assets/fonts/PixelOperator8.ttf" id="1_e6iby"]
+[ext_resource type="Script" path="res://scripts/multiplayer/multiplayer_panel.gd" id="1_omb2u"]
+
+[node name="MultiplayerPanel" type="Panel"]
+script = ExtResource("1_omb2u")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 40.0
+offset_right = 168.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("1_e6iby")
+theme_override_font_sizes/font_size = 16
+text = "Lobbies:"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 40.0
+offset_right = 286.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("1_e6iby")
+theme_override_font_sizes/font_size = 16
+text = "
+"
+
+[node name="Lobbies" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 564.0
+offset_bottom = 564.0
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 576.0
+offset_right = 128.0
+offset_bottom = 600.0
+theme_override_fonts/font = ExtResource("1_e6iby")
+theme_override_font_sizes/font_size = 16
+text = "Back"
+
+[connection signal="pressed" from="Back" to="." method="_on_multi_back_pressed"]

@@ -38,11 +38,11 @@ func set_color(color):
     mageSprite.material.set_shader_parameter("target_color", color)
     cdBar.material.set_shader_parameter("target_color", color)
     
-func _apply_animation(delta):
+func _apply_animation(_delta):
     handleMageAnimation()
     handleStaffAnimation()
     
-func _apply_movement_from_input(delta):
+func _apply_movement_from_input(_delta):
     get_input()
     move_and_slide()
 
@@ -150,7 +150,6 @@ func shoot():
     var bullet = bullet_scene.instantiate()
 
     var player_vector : Vector2 = marker.global_position
-    var mouse_position : Vector2 = player_input.mouse_position
     bullets.add_child(bullet)
     bullet.bullet_velocity = player_vector.direction_to(mouse_position)
     bullet.look_at(mouse_position)

@@ -2,7 +2,7 @@ extends Node
 
 enum MULTIPLAYER_NETWORK_TYPE { ENET, STEAM }
 
-@export var _players_spawn_node: Node2D
+#@export var _players_spawn_node: Node2D
 
 var active_network_type: MULTIPLAYER_NETWORK_TYPE = MULTIPLAYER_NETWORK_TYPE.ENET
 var enet_network_scene := preload("res://scenes/multiplayer/network/enet_network.tscn")
@@ -27,7 +27,7 @@ func _build_multiplayer_network():
 func _set_active_network(active_network_scene):
     var network_scene_initialized = active_network_scene.instantiate()
     active_network = network_scene_initialized
-    active_network._players_spawn_node = _players_spawn_node
+    #active_network._players_spawn_node = _players_spawn_node
     add_child(active_network)
 
 func become_host():

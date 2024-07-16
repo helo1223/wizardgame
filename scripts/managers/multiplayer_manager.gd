@@ -58,12 +58,12 @@ func use_steam():
     $MainMenu.hide()
     %SteamHUD.show()
     SteamManager.initialize_steam()
-    %NetworkManager.active_network_type = %NetworkManager.MULTIPLAYER_NETWORK_TYPE.STEAM
+    NetworkManager.active_network_type = NetworkManager.MULTIPLAYER_NETWORK_TYPE.STEAM
     Steam.lobby_match_list.connect(_on_lobby_match_list)
     
 func list_lobbies():
     print("Listing lobbies")
-    %NetworkManager.list_lobbies()
+    NetworkManager.list_lobbies()
     
 func _remove_single_player():
     print("Removing single player")

@@ -11,7 +11,7 @@ func _ready():
         return    
     input_direction = Input.get_vector("left", "right", "up", "down")
     
-func _physics_process(delta):
+func _physics_process(_delta):
     if not is_multiplayer_authority():
         return
         
@@ -19,7 +19,7 @@ func _physics_process(delta):
     mouse_position = player.get_global_mouse_position()
 
     
-func _process(delta):
+func _process(_delta):
     if not is_multiplayer_authority():
         return
     

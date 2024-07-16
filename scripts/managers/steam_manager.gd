@@ -29,5 +29,5 @@ func initialize_steam():
     STEAM_NAME = Steam.getPersonaName()
     OWNED = Steam.isSubscribed()
 
-func _process(delta):
+func _process(_delta):
     Steam.run_callbacks()

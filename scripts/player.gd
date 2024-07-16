@@ -79,11 +79,11 @@ func handleCooldown():
         cdBar.visible = true
         cdBar.size = Vector2(40 - ($AttackTimer.time_left * 40),40)
 
-func _physics_process(delta):
+func _physics_process(_delta):
     get_input()
     move_and_slide()
     
-func _process(delta):
+func _process(_delta):
     handleMageAnimation()
     handleStaffAnimation()
     handleCooldown()

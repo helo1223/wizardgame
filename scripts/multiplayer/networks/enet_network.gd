@@ -19,7 +19,7 @@ func become_host():
     
     _add_player_to_game(1)
     
-func join_game(lobby_id):
+func join_game(_lobby_id):
     multiplayer_peer.create_client(SERVER_IP, SERVER_PORT)
     multiplayer.multiplayer_peer = multiplayer_peer
 

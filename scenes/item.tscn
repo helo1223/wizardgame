@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://byresh1yv4edi"]
+
+[ext_resource type="Texture2D" uid="uid://c5cyyj0mny35e" path="res://assets/sprites/Potions - Full, Corked.png" id="1_6ol5o"]
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_6p4ia"]
+[ext_resource type="FontFile" uid="uid://b8c73i47s1os1" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_11uxr"]
+[ext_resource type="FontFile" uid="uid://dj4ltn4hywlhs" path="res://assets/fonts/PixelOperator8.ttf" id="3_gapgm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a85xm"]
+radius = 31.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vifly"]
+atlas = ExtResource("1_6ol5o")
+region = Rect2(0, 0, 16, 28.05)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_6p4ia")
+
+[node name="PickupRange" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a85xm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_vifly")
+
+[node name="Tooltip" type="Panel" parent="."]
+visible = false
+offset_left = 8.0
+offset_top = -64.0
+offset_right = 72.0
+offset_bottom = -14.0
+scale = Vector2(1.88427, 1.97162)
+
+[node name="ItemName" type="Label" parent="Tooltip"]
+layout_mode = 0
+offset_left = 4.24568
+offset_top = 4.05757
+offset_right = 72.2457
+offset_bottom = 12.0576
+scale = Vector2(0.636529, 0.636529)
+theme_override_fonts/font = ExtResource("2_11uxr")
+theme_override_font_sizes/font_size = 8
+text = "Test name"
+
+[node name="ItemDesc" type="Label" parent="Tooltip"]
+offset_left = 4.24568
+offset_top = 12.1727
+offset_right = 72.2457
+offset_bottom = 20.1727
+scale = Vector2(0.636529, 0.636529)
+theme_override_fonts/font = ExtResource("3_gapgm")
+theme_override_font_sizes/font_size = 8
+text = "Longer description of item"
+autowrap_mode = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
