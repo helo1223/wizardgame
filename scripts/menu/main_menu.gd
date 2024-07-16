@@ -10,6 +10,10 @@ var selection_anim_finished = false
                     
 @onready var select_button = $CharacterSelectPanel/Select                    
 
+func _ready():
+    for i in mages.size():
+        GameManager.set_color(mages[i].get_node("AnimatedSprite2D"), GameManager.COLORS[i])
+
 func _on_singleplayer_pressed():
     $Home.visible = false
     $CharacterSelectPanel.visible = true
