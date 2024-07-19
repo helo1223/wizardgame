@@ -2,38 +2,89 @@ extends CharacterBody2D
 
 
 const SPEED = 100.0
-const ATTACKSPEED = 1.0
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
-@onready var mageSprite = $MageSprite
-@onready var staffSprite = $MageSprite.get_node("StaffSprite")
-@onready var cdBar = $Bar
+@onready var mageSprite = $Mage
+@onready var playerNameLabel = $PlayerName
+@onready var bullets = $Bullets
+
+@onready var staffs = [$Mage/Staff, $Mage/Staff2]
+var active_staff_index = 0
+var active_staff = null
+var username = ""
 
 var attacking = false
 var canAttack = true
-var staffFlipped = false
+var mouse_position = null
 
 var inventory_visible = false
+                
+var player_color = GameManager.COLORS[0]
+                
+func set_color(color):
+    mageSprite.material.set_shader_parameter("target_color", color)
+    
+func _apply_animation(_delta):
+    handleMageAnimation()
+    handleStaffAnimation()
+    
+func _apply_movement_from_input(_delta):
+    get_input()
+    move_and_slide()
 
-func _ready():
-    cdBar.size = Vector2(0,40)
-
+func _ready():        
+    #$AttackTimer.wait_time = ATTACKSPEED
+    $PlayerName.text = "Player"
+    active_staff = staffs[active_staff_index]
+    active_staff.color = player_color
+    GameManager.set_color(active_staff.sprite, player_color)
+    staffs[1].color = GameManager.COLORS[3]
+    staffs[1].attack_speed = 2.0
+    
 func get_input():
+    var next_staff = Input.is_action_just_pressed("next_staff")
+    var prev_staff = Input.is_action_just_pressed("prev_staff")
+    if next_staff:
+        switch_active_staff(1)
+    elif prev_staff:
+        switch_active_staff(-1)
+    
     var input_direction = Input.get_vector("left", "right", "up", "down")
     velocity = input_direction * SPEED
         
     if Input.is_action_just_pressed("inventory"):
         inventory_visible = !inventory_visible 
         
-    if !attacking:
-        attacking = Input.is_action_just_pressed("attack")
-        
+    if Input.is_action_just_pressed("attack"):
+        attack()
 
+func switch_active_staff(dir):
+    if dir == 1:
+        if active_staff_index < staffs.size()-1:
+            active_staff_index +=1
+        else:
+            active_staff_index = 1
+    elif dir == -1 && dir < 0:
+        if active_staff_index > 0:
+            active_staff_index -= 1
+        else:
+            active_staff_index = staffs.size()-1
+    active_staff.visible = false
+    active_staff.attacking = false
+    active_staff.state = "idle"
+    active_staff = staffs[active_staff_index]
+    GameManager.set_color(active_staff.sprite, active_staff.color)
+    active_staff.visible = true
+
+func attack():
+    active_staff.shoot()
+
+        
 func handleMageAnimation():
-    
     if velocity != Vector2.ZERO:
         mageSprite.animation =  "walk"
         if velocity.x < 0:
@@ -45,61 +96,34 @@ func handleMageAnimation():
         mageSprite.speed_scale = 1
         
 func handleStaffAnimation():
-    if staffSprite:
-        if attacking:
-            if canAttack:
-                staffSprite.speed_scale = 1
-                canAttack = false
-                staffSprite.play("attack")
-                $AttackTimer.start()
+    if not active_staff.attacking:
+        if velocity != Vector2.ZERO:
+            active_staff.set_walk(velocity)
         else:
-            if velocity != Vector2.ZERO:
-                    staffSprite.animation =  "walk"
-                    if velocity.x < 0:
-                        staffSprite.speed_scale = -1
-                    else:
-                        staffSprite.speed_scale = 1
-            else:
-                staffSprite.animation =  "idle"
-                staffSprite.speed_scale = 1
-        
-        var mouse_position = get_global_mouse_position()
+            active_staff.set_idle()
+            
+    handle_mouse_position()
+    
+
+    
+func handle_mouse_position():
+    #Flip sprites
+    mouse_position = get_global_mouse_position()
+    if mouse_position:
         if mouse_position < position:
             mageSprite.flip_h = true
-            staffSprite.flip_v = true
+            if not attacking: 
+                #active_staff.sprite.speed_scale *= -1
+                active_staff.sprite.scale.y = -1
         else:
             mageSprite.flip_h = false
-            staffSprite.flip_v = false
-        staffSprite.look_at(mouse_position) 	
-
-func handleCooldown():
-    if canAttack:
-        cdBar.visible = false
-    else:
-        cdBar.visible = true
-        cdBar.size = Vector2(40 - ($AttackTimer.time_left * 40),40)
-
-func _physics_process(_delta):
-    get_input()
-    move_and_slide()
+            active_staff.sprite.scale.y = 1
+            
+        #Staff follows mouse
+        active_staff.look_at(mouse_position) 	
     
-func _process(_delta):
-    handleMageAnimation()
-    handleStaffAnimation()
-    handleCooldown()
-    handleAttack()
-    #displayInventory()
-    
-func handleAttack():
-    if canAttack && attacking:
-        pass
-
-func displayInventory():
-    $Inventory.visible = inventory_visible
-
-func _on_attack_timer_timeout():
-    canAttack = true
-
-func _on_staff_sprite_animation_finished():
-    if staffSprite.animation == "attack":
-        attacking = false
+func _process(delta):
+    _apply_animation(delta)        
+         
+func _physics_process(delta):
+    _apply_movement_from_input(delta)

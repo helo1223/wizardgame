@@ -41,6 +41,7 @@ theme_override_font_sizes/font_size = 8
 text = "Test name"
 
 [node name="ItemDesc" type="Label" parent="Tooltip"]
+layout_mode = 0
 offset_left = 4.24568
 offset_top = 12.1727
 offset_right = 72.2457

@@ -1,7 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://c25s3cm0k8b4n"]
+[gd_scene load_steps=10 format=3 uid="uid://c25s3cm0k8b4n"]
 
 [ext_resource type="Texture2D" uid="uid://dpo4ea4h7kdep" path="res://assets/sprites/mageAttack.png" id="1_ggosi"]
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_oxs1l"]
+[ext_resource type="Shader" path="res://scripts/player.gdshader" id="2_i05jk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_46qme"]
+resource_local_to_scene = true
+shader = ExtResource("2_i05jk")
+shader_parameter/find_color = Color(1, 1, 1, 1)
+shader_parameter/target_color = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_58e1t"]
 atlas = ExtResource("1_ggosi")
@@ -35,9 +42,8 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_0hu1p"]
 radius = 4.0
 
-[node name="Bullet" type="CharacterBody2D"]
-motion_mode = 1
-slide_on_ceiling = false
+[node name="Bullet" type="Area2D"]
+top_level = true
 script = ExtResource("1_oxs1l")
 
 [node name="FadeTimer" type="Timer" parent="."]
@@ -45,11 +51,10 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_46qme")
 sprite_frames = SubResource("SpriteFrames_j4b0l")
 frame_progress = 0.906541
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0hu1p")
-
-[connection signal="timeout" from="FadeTimer" to="." method="_on_fade_timer_timeout"]

@@ -13,4 +13,3 @@ func set_color(sprite : Node, color : Color):
     
 func set_player_color(player : CharacterBody2D, color : Color):
     set_color(player.mageSprite, color)
-    set_color(player.cdBar, color)

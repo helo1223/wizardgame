@@ -150,8 +150,8 @@ func shoot():
     var bullet = bullet_scene.instantiate()
 
     var player_vector : Vector2 = marker.global_position
-    bullets.add_child(bullet)
     bullet.bullet_velocity = player_vector.direction_to(mouse_position)
     bullet.look_at(mouse_position)
     bullet.position = marker.global_position
+    bullets.add_child(bullet)
 

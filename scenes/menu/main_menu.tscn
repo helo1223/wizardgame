@@ -84,7 +84,7 @@ layout_mode = 0
 [connection signal="pressed" from="Home/Singleplayer" to="." method="_on_singleplayer_pressed"]
 [connection signal="pressed" from="Home/Multiplayer" to="." method="_on_multiplayer_pressed"]
 [connection signal="pressed" from="Home/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="Home/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Home/Exit" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Home/Exit" to="." method="_on_exit_pressed"]
 
 [editable path="CharacterSelectPanel"]
