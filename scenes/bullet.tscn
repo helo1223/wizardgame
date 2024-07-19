@@ -54,6 +54,7 @@ autostart = true
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_46qme")
 sprite_frames = SubResource("SpriteFrames_j4b0l")
+autoplay = "default"
 frame_progress = 0.906541
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

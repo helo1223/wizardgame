@@ -23,7 +23,7 @@ var mouse_position = null
 
 var inventory_visible = false
                 
-var player_color = GameManager.COLORS[0]
+var player_color = GameManager.COLORS[GameManager.selected_color]
                 
 func set_color(color):
     mageSprite.material.set_shader_parameter("target_color", color)
@@ -61,6 +61,9 @@ func get_input():
         
     if Input.is_action_pressed("attack"):
         attack()
+        
+    if Input.is_action_just_pressed("exit"):
+        get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 
 func switch_active_staff(dir):
     if dir == 1:

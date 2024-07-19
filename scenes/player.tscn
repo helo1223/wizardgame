@@ -126,9 +126,8 @@ script = ExtResource("1_o84ry")
 material = SubResource("ShaderMaterial_50p2k")
 position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_3a1me")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.051789
 
 [node name="Staff" parent="Mage" instance=ExtResource("3_468a0")]
 
