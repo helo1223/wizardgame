@@ -59,7 +59,7 @@ func get_input():
     if Input.is_action_just_pressed("inventory"):
         inventory_visible = !inventory_visible 
         
-    if Input.is_action_just_pressed("attack"):
+    if Input.is_action_pressed("attack"):
         attack()
 
 func switch_active_staff(dir):
